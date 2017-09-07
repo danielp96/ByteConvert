@@ -1,0 +1,11 @@
+{
+    "name": "byteConvert",
+    "url": "",
+    "license": "MIT",
+    "tags": ["cross", "utility", "byte"],
+    "description": "Target independent tools for several byte conversions.",
+    "version": "1.0.0",
+    "classPath": "src",
+    "releasenote": "Initial release, everything works.",
+    "contributors": ["danielp96"],
+}
