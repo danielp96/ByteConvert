@@ -1,6 +1,6 @@
 {
     "name": "byteConvert",
-    "url": "",
+    "url": "https://github.com/danielp96/ByteConvert",
     "license": "MIT",
     "tags": ["cross", "utility", "byte"],
     "description": "Target independent tools for several byte conversions.",
@@ -8,4 +8,5 @@
     "classPath": "src",
     "releasenote": "Initial release, everything works.",
     "contributors": ["danielp96"],
+    "dependecies": {}
 }
