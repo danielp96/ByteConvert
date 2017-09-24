@@ -39,6 +39,9 @@ class Example
         // prints 270544960, (0x10203040)
         trace( ByteConvert.toUInt32([0x10, 0x20, 0x30, 0x40]) );
         
+        // prints 8240, (0x2030)
+        trace( ByteConvert.readUInt16([0x10, 0x20, 0x30, 0x40], 1) );
+        
         // prints [170, 255], ([0xAA, 0xFF])
         trace( ByteConvert.fromInt16(43775) );
         
@@ -63,6 +66,9 @@ class Example
         
         // prints 270544960, (0x10203040)
         trace( [0x10, 0x20, 0x30, 0x40].toUInt32() );
+        
+        // prints 8240, (0x2030)
+        trace( [0x10, 0x20, 0x30, 0x40].readUInt16(1) );
         
         // prints [170, 255], ([0xAA, 0xFF])
         trace( 43775.fromInt16() );
