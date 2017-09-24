@@ -341,7 +341,7 @@ class ByteConvert
        @param b byte array.
        @param pos position to read from.
     **/
-    private static function readInt16(b:Array<Int>, pos:Int):Int
+    public static function readInt16(b:Array<Int>, pos:Int):Int
     {
         return toInt16(b.slice(pos, pos+2));
     }
@@ -352,7 +352,7 @@ class ByteConvert
        @param b byte array.
        @param pos position to read from.
     **/
-    private static function readInt32(b:Array<Int>, pos:Int):Int
+    public static function readInt32(b:Array<Int>, pos:Int):Int
     {
         return toInt32(b.slice(pos, pos+4));
     }
@@ -365,7 +365,7 @@ class ByteConvert
        @param b byte array.
        @param pos position to read from.
     **/
-    private static function readInt64(b:Array<Int>, pos:Int):Int
+    public static function readInt64(b:Array<Int>, pos:Int):Int
     {
         return toInt64(b.slice(pos, pos+8));
     }
@@ -376,7 +376,7 @@ class ByteConvert
        @param b byte array.
        @param pos position to read from.
     **/
-    private static function readUInt16(b:Array<Int>, pos:Int):UInt
+    public static function readUInt16(b:Array<Int>, pos:Int):UInt
     {
         return toUInt16(b.slice(pos, pos+2));
     }
@@ -387,7 +387,7 @@ class ByteConvert
        @param b byte array.
        @param pos position to read from.
     **/
-    private static function readUInt32(b:Array<Int>, pos:Int):UInt
+    public static function readUInt32(b:Array<Int>, pos:Int):UInt
     {
         return toUInt32(b.slice(pos, pos+4));
     }
@@ -400,7 +400,7 @@ class ByteConvert
        @param b byte array.
        @param pos position to read from.
     **/
-    private static function readUInt64(b:Array<Int>, pos:Int):UInt
+    public static function readUInt64(b:Array<Int>, pos:Int):UInt
     {
         return toUInt64(b.slice(pos, pos+8));
     }
