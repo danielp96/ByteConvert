@@ -47,6 +47,11 @@ class Example
         
         //prints 4286045457, (0xFF77DD11)
         trace( ByteConvert.flipEndian32(0x11DD77FF) );
+        
+        //prints 279641920, (10aaff40)
+        var ar:Array<Int> = [0x10, 0x20, 0x30, 0x40];
+        ByteConvert.writeInt16(ar, 0xaaff, 1);
+        trace(ar);
     }
 }
 ```
@@ -75,6 +80,11 @@ class Example
         
         //prints 4286045457, (0xFF77DD11)
         trace( 0x11DD77FF.flipEndian32() );
+        
+        //prints 279641920, (10aaff40)
+        var ar:Array<Int> = [0x10, 0x20, 0x30, 0x40];
+        ar.writeInt16(0xaaff, 1);
+        trace(ar);
     }
 }
 ```

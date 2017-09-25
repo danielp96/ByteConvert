@@ -4,8 +4,8 @@
     "license": "MIT",
     "tags": ["cross", "utility", "byte"],
     "description": "Target independent tools for several byte conversions.",
-    "version": "1.1.1",
-    "releasenote": "Fixed static access.",
+    "version": "1.2.0",
+    "releasenote": "New Feature: writeInt() and writeUInt() functions for 16- 32- 64-bit.",
     "contributors": ["danielp96"],
     "dependecies": {}
 }

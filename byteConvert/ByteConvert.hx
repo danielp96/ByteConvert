@@ -404,4 +404,108 @@ class ByteConvert
     {
         return toUInt64(b.slice(pos, pos+8));
     }
+         
+    /**
+        Write a 16-bit signed integer in the given bytes array at the given position.
+        
+        @param b byte array.
+        @param num number to write.
+        @param pos position to write at.
+    **/
+    public static function writeInt16(b:Array<Int>, num:Int, pos:Int):Void
+    {
+        var ar:Array<Int> = fromInt16(num);
+
+        for (i in 0...2)
+        {
+            b[pos+i] = ar[i];
+        }
+    }
+    
+    /**
+        Write a 32-bit signed integer in the given bytes array at the given position.
+        
+        @param b byte array.
+        @param num number to write.
+        @param pos position to write at.
+    **/
+    public static function writeInt32(b:Array<Int>, num:Int, pos:Int):Void
+    {
+        var ar:Array<Int> = fromInt32(num);
+
+        for (i in 0...4)
+        {
+            b[pos+i] = ar[i];
+        }
+    }
+    
+    /**
+        Write a 64-bit signed integer in the given bytes array at the given position.
+        
+        @param b byte array.
+        @param num number to write.
+        @param pos position to write at.
+    **/
+    public static function writeInt64(b:Array<Int>, num:Int, pos:Int):Void
+    {
+        var ar:Array<Int> = fromInt64(num);
+
+        for (i in 0...8)
+        {
+            b[pos+i] = ar[i];
+        }
+    }
+        
+    /**
+        Write a 16-bit unsigned integer in the given bytes array at the given position.
+        
+        @param b byte array.
+        @param num number to write.
+        @param pos position to write at.
+    **/
+    public static function writeUInt16(b:Array<Int>, num:UInt, pos:Int):Void
+    {
+        var ar:Array<Int> = fromUInt16(num);
+
+        for (i in 0...2)
+        {
+            b[pos+i] = ar[i];
+        }
+    }
+    
+    /**
+        Write a 32-bit unsigned integer in the given bytes array at the given position.
+        
+        @param b byte array.
+        @param num number to write.
+        @param pos position to write at.
+    **/
+    public static function writeUInt32(b:Array<Int>, num:UInt, pos:Int):Void
+    {
+        var ar:Array<Int> = fromUInt32(num);
+
+        for (i in 0...4)
+        {
+            b[pos+i] = ar[i];
+        }
+    }
+    
+    /**
+        Write a 64-bit unsigned integer in the given bytes array at the given position.
+         
+         **Doesn't work in 32-bit systems**
+        
+        @param b byte array.
+        @param num number to write.
+        @param pos position to write at.
+    **/
+    public static function writeUInt64(b:Array<Int>, num:UInt, pos:Int):Void
+    {
+        var ar:Array<Int> = fromUInt64(num);
+
+        for (i in 0...8)
+        {
+            b[pos+i] = ar[i];
+        }
+    }
 }
