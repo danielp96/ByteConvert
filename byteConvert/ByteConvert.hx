@@ -9,43 +9,65 @@ package byteConvert;
 class ByteConvert
 {
     /**
-        Returns an array of Bools representing an 8-bit Int,
+        Returns an array of 0s and 1s representing an 8-bit Int,
         with the first element being the most significant bit.
         
         @param byte value to be converted.
     **/
-    public static function toBits(byte:Int):Array<Bool>
+    public static function toBits(byte:Int):Array<Int>
     {
-        var ar:Array<Bool> = [];
+        var ar:Array<Int> = [];
         
-        ar.push((byte & 0x80) != 0);
-        ar.push((byte & 0x40) != 0);
-        ar.push((byte & 0x20) != 0);
-        ar.push((byte & 0x10) != 0);
-        ar.push((byte & 0x08) != 0);
-        ar.push((byte & 0x04) != 0);
-        ar.push((byte & 0x02) != 0);
-        ar.push((byte & 0x01) != 0);
+        ar.push( ((byte & 0x80) == 0)? 0: 1 );
+        ar.push( ((byte & 0x40) == 0)? 0: 1 );
+        ar.push( ((byte & 0x20) == 0)? 0: 1 );
+        ar.push( ((byte & 0x10) == 0)? 0: 1 );
+        ar.push( ((byte & 0x08) == 0)? 0: 1 );
+        ar.push( ((byte & 0x04) == 0)? 0: 1 );
+        ar.push( ((byte & 0x02) == 0)? 0: 1 );
+        ar.push( ((byte & 0x01) == 0)? 0: 1 );
         
         return ar;
     }
     
     /**
-        Returns an 8-bit Int from the given array of Bools,
+        Returns an 8-bit Int from the given array of 0s and 1s,
         with the first element being the most significant bit.
         
-        @param num bool array representing a byte.
+        @param num int array representing a byte.
     **/
-    public static function fromBits(num:Array<Bool>):Int
+    public static function fromBits(num:Array<Int>):Int
     {
         var n:Int = 0;
         
+        num.reverse();
+        
+        // iterate in reverse to keep bit order
         for (i in 0...8)
         {
-            n += num[i]? 1 << i: 0;
+            n += (num[i] != 0)? 1 << i: 0;
         }
         
         return n;
+    }
+    
+    /**
+        Returns num with pos bit set to val.
+        
+        @param num 8-bit Int to read/edit.
+        @param pos right-to-left 0-7 bit position.
+        @param val value to set the bit to.
+        
+        If val is null it returns the value of bit at pos.
+    **/
+    public static function bit(num:Int, pos:Int, ?val:Int):Int
+    {
+        if (val >= 0)
+        {
+            return ((val & 1) << pos) | num;
+        }
+        
+        return (num & (1 << pos) >> pos);
     }
     
     /**
