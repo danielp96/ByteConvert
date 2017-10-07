@@ -4,8 +4,10 @@
     "license": "MIT",
     "tags": ["cross", "utility", "byte"],
     "description": "Target independent tools for several byte conversions.",
-    "version": "1.2.0",
-    "releasenote": "New Feature: writeInt() and writeUInt() functions for 16- 32- 64-bit.",
+    "version": "2.0.0",
+    "releasenote": "Added bit() function to read/write single bits from a byte,
+    				API Change: toBits() and fromBits() now use Array<Int> instead of Array<Bool>,
+    				API Change: writeInt and writeUInt functions changed parameters to func(b, pos, num) to pattern used by other langs/APIs.",
     "contributors": ["danielp96"],
     "dependecies": {}
 }

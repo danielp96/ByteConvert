@@ -50,7 +50,7 @@ class Example
         
         //prints 279641920, (10aaff40)
         var ar:Array<Int> = [0x10, 0x20, 0x30, 0x40];
-        ByteConvert.writeInt16(ar, 0xaaff, 1);
+        ByteConvert.writeInt16(ar, 1, 0xaaff);
         trace(ar);
     }
 }
@@ -83,7 +83,7 @@ class Example
         
         //prints 279641920, (10aaff40)
         var ar:Array<Int> = [0x10, 0x20, 0x30, 0x40];
-        ar.writeInt16(0xaaff, 1);
+        ar.writeInt16(1, 0xaaff);
         trace(ar);
     }
 }
