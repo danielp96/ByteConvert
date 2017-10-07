@@ -10,7 +10,7 @@ class ByteConvert
 {
     /**
         Returns an array of 0s and 1s representing an 8-bit Int,
-        with the first element being the most significant bit.
+        with the first element being the least significant bit.
         
         @param byte value to be converted.
     **/
@@ -18,29 +18,27 @@ class ByteConvert
     {
         var ar:Array<Int> = [];
         
-        ar.push( ((byte & 0x80) == 0)? 0: 1 );
-        ar.push( ((byte & 0x40) == 0)? 0: 1 );
-        ar.push( ((byte & 0x20) == 0)? 0: 1 );
-        ar.push( ((byte & 0x10) == 0)? 0: 1 );
-        ar.push( ((byte & 0x08) == 0)? 0: 1 );
-        ar.push( ((byte & 0x04) == 0)? 0: 1 );
-        ar.push( ((byte & 0x02) == 0)? 0: 1 );
         ar.push( ((byte & 0x01) == 0)? 0: 1 );
+        ar.push( ((byte & 0x02) == 0)? 0: 1 );
+        ar.push( ((byte & 0x04) == 0)? 0: 1 );
+        ar.push( ((byte & 0x08) == 0)? 0: 1 );
+        ar.push( ((byte & 0x10) == 0)? 0: 1 );
+        ar.push( ((byte & 0x20) == 0)? 0: 1 );
+        ar.push( ((byte & 0x40) == 0)? 0: 1 );
+        ar.push( ((byte & 0x80) == 0)? 0: 1 );
         
         return ar;
     }
     
     /**
         Returns an 8-bit Int from the given array of 0s and 1s,
-        with the first element being the most significant bit.
+        with the first element being the least significant bit.
         
         @param num int array representing a byte.
     **/
     public static function fromBits(num:Array<Int>):Int
     {
         var n:Int = 0;
-        
-        num.reverse();
         
         // iterate in reverse to keep bit order
         for (i in 0...8)
@@ -62,12 +60,15 @@ class ByteConvert
     **/
     public static function bit(num:Int, pos:Int, ?val:Int):Int
     {
+        var ar = toBits(num);
+        
         if (val >= 0)
         {
-            return ((val & 1) << pos) | num;
+            ar[pos] = val;
+            return fromBits(ar);
         }
         
-        return (num & (1 << pos) >> pos);
+        return ar[pos];
     }
     
     /**
@@ -431,10 +432,10 @@ class ByteConvert
         Write a 16-bit signed integer in the given bytes array at the given position.
         
         @param b byte array.
-        @param num number to write.
         @param pos position to write at.
+        @param num number to write.
     **/
-    public static function writeInt16(b:Array<Int>, num:Int, pos:Int):Void
+    public static function writeInt16(b:Array<Int>, pos:Int, num:Int):Void
     {
         var ar:Array<Int> = fromInt16(num);
 
@@ -448,10 +449,10 @@ class ByteConvert
         Write a 32-bit signed integer in the given bytes array at the given position.
         
         @param b byte array.
-        @param num number to write.
         @param pos position to write at.
+        @param num number to write.
     **/
-    public static function writeInt32(b:Array<Int>, num:Int, pos:Int):Void
+    public static function writeInt32(b:Array<Int>, pos:Int, num:Int):Void
     {
         var ar:Array<Int> = fromInt32(num);
 
@@ -465,10 +466,10 @@ class ByteConvert
         Write a 64-bit signed integer in the given bytes array at the given position.
         
         @param b byte array.
-        @param num number to write.
         @param pos position to write at.
+        @param num number to write.
     **/
-    public static function writeInt64(b:Array<Int>, num:Int, pos:Int):Void
+    public static function writeInt64(b:Array<Int>, pos:Int, num:Int):Void
     {
         var ar:Array<Int> = fromInt64(num);
 
@@ -482,10 +483,10 @@ class ByteConvert
         Write a 16-bit unsigned integer in the given bytes array at the given position.
         
         @param b byte array.
-        @param num number to write.
         @param pos position to write at.
+        @param num number to write.
     **/
-    public static function writeUInt16(b:Array<Int>, num:UInt, pos:Int):Void
+    public static function writeUInt16(b:Array<Int>, pos:Int, num:UInt):Void
     {
         var ar:Array<Int> = fromUInt16(num);
 
@@ -499,10 +500,10 @@ class ByteConvert
         Write a 32-bit unsigned integer in the given bytes array at the given position.
         
         @param b byte array.
-        @param num number to write.
         @param pos position to write at.
+        @param num number to write.
     **/
-    public static function writeUInt32(b:Array<Int>, num:UInt, pos:Int):Void
+    public static function writeUInt32(b:Array<Int>, pos:Int, num:UInt):Void
     {
         var ar:Array<Int> = fromUInt32(num);
 
@@ -518,10 +519,10 @@ class ByteConvert
          **Doesn't work in 32-bit systems**
         
         @param b byte array.
-        @param num number to write.
         @param pos position to write at.
+        @param num number to write.
     **/
-    public static function writeUInt64(b:Array<Int>, num:UInt, pos:Int):Void
+    public static function writeUInt64(b:Array<Int>, pos:Int, num:UInt):Void
     {
         var ar:Array<Int> = fromUInt64(num);
 
