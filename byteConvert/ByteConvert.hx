@@ -9,39 +9,38 @@ package byteConvert;
 class ByteConvert
 {
     /**
-        Returns an array of 0s and 1s representing an 8-bit Int,
+        Returns an array of 0s and 1s representing an 32- or 64-bit UInt,
         with the first element being the least significant bit.
         
-        @param byte value to be converted.
+        @param num value to be converted.
     **/
-    public static function toBits(byte:Int):Array<Int>
+    public static function toBits(num:UInt):Array<Int>
     {
         var ar:Array<Int> = [];
+        var length:Int = 32;
         
-        ar.push( ((byte & 0x01) == 0)? 0: 1 );
-        ar.push( ((byte & 0x02) == 0)? 0: 1 );
-        ar.push( ((byte & 0x04) == 0)? 0: 1 );
-        ar.push( ((byte & 0x08) == 0)? 0: 1 );
-        ar.push( ((byte & 0x10) == 0)? 0: 1 );
-        ar.push( ((byte & 0x20) == 0)? 0: 1 );
-        ar.push( ((byte & 0x40) == 0)? 0: 1 );
-        ar.push( ((byte & 0x80) == 0)? 0: 1 );
+        // if bigger, it's 64-bit number
+        length = (num > 0xFFFFFFFF)? 64: 32;
+        
+        for (i in 0...length)
+        {
+            ar.push( (num & (1 << i)) >> i );
+        }
         
         return ar;
     }
     
     /**
-        Returns an 8-bit Int from the given array of 0s and 1s,
+        Returns an 32- or 64-bit UInt from the given array of 0s and 1s,
         with the first element being the least significant bit.
         
-        @param num int array representing a byte.
+        @param num int array to be converted.
     **/
-    public static function fromBits(num:Array<Int>):Int
+    public static function fromBits(num:Array<Int>):UInt
     {
-        var n:Int = 0;
+        var n:UInt = 0;
         
-        // iterate in reverse to keep bit order
-        for (i in 0...8)
+        for (i in 0...num.length)
         {
             n += (num[i] != 0)? 1 << i: 0;
         }
@@ -52,13 +51,13 @@ class ByteConvert
     /**
         Returns num with pos bit set to val.
         
-        @param num 8-bit Int to read/edit.
-        @param pos right-to-left 0-7 bit position.
+        @param num UInt to read/edit.
+        @param pos right-to-left 0-31 or 0-63 bit position.
         @param val value to set the bit to.
         
         If val is null it returns the value of bit at pos.
     **/
-    public static function bit(num:Int, pos:Int, ?val:Int):Int
+    public static function bit(num:UInt, pos:Int, ?val:Int):Int
     {
         var ar = toBits(num);
         
@@ -69,6 +68,18 @@ class ByteConvert
         }
         
         return ar[pos];
+    }
+    
+    public static function readBits(num:UInt, pos:Int, length:Int):UInt
+    {
+        var newNum = 0;
+        
+        for (i in 0...length)
+        {
+            newNum = bit(newNum, i, bit(num, pos+i));
+        }
+        
+        return newNum;
     }
     
     /**
