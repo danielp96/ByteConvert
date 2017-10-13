@@ -7,7 +7,9 @@ ByteConvert can:
 
 - Convert signed and unsigned integers to and from an array of 8-bit bytes.
 - Change the endianess of signed and unsigned integers.
-- Convert a single byte to and from an array of booleans.
+- Convert a single byte to and from an array of 1s and 0s.
+- Read and write Ints and UInts from an array of bytes.
+- Read and set specific bits of a number.
 
 All features, except single-byte, work with 16-, 32-, and 64-bit lengths.
 
