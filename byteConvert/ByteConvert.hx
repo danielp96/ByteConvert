@@ -55,7 +55,7 @@ class ByteConvert
         @param pos right-to-left 0-31 or 0-63 bit position.
         @param val value to set the bit to.
         
-        If val is null it returns the value of bit at pos.
+        If val is null returns the value of bit at pos.
     **/
     public static function bit(num:UInt, pos:Int, ?val:Int):Int
     {
@@ -70,13 +70,30 @@ class ByteConvert
         return ar[pos];
     }
     
-    public static function readBits(num:UInt, pos:Int, length:Int):UInt
-    {
-        var newNum = 0;
+    /**
+        Returns num with len bits of val set at pos.
         
-        for (i in 0...length)
+        @param num UInt to read/edit.
+        @param pos right-to-left 0-31 or 0-63 bit position.
+        @param len amount of bits to read/write.
+        @param val value to write at pos.
+        
+        If val is null returns len bits at pos.
+    **/
+    public static function bits(num:UInt, pos:Int, len:Int, ?val:UInt):UInt
+    {
+        var newNum:UInt = (val >= 0)? num: 0;
+        
+        for (i in 0...len)
         {
-            newNum = bit(newNum, i, bit(num, pos+i));
+            if (val >= 0)
+            {
+                newNum = bit(newNum, pos+i, bit(val, i));
+            }
+            else
+            {
+                newNum = bit(newNum, i, bit(num, pos+i));
+            }
         }
         
         return newNum;
@@ -285,7 +302,6 @@ class ByteConvert
         
         for (i in 0...4)
         {
-            
             ar.push((n << (i * 8)) >> 24);
         }
         
@@ -306,7 +322,6 @@ class ByteConvert
         
         for (i in 0...8)
         {
-            
             ar.push((n << (i * 8)) >> 56);
         }
         
@@ -341,7 +356,6 @@ class ByteConvert
         
         for (i in 0...4)
         {
-            
             ar.push((n << (i * 8)) >> 24);
         }
         
@@ -362,7 +376,6 @@ class ByteConvert
         
         for (i in 0...8)
         {
-            
             ar.push((n << (i * 8)) >> 56);
         }
         
@@ -377,6 +390,7 @@ class ByteConvert
     **/
     public static function readInt16(b:Array<Int>, pos:Int):Int
     {
+    	// simply cuts the number from the array
         return toInt16(b.slice(pos, pos+2));
     }
     
@@ -388,6 +402,7 @@ class ByteConvert
     **/
     public static function readInt32(b:Array<Int>, pos:Int):Int
     {
+    	// simply cuts the number from the array
         return toInt32(b.slice(pos, pos+4));
     }
     
@@ -401,6 +416,7 @@ class ByteConvert
     **/
     public static function readInt64(b:Array<Int>, pos:Int):Int
     {
+    	// simply cuts the number from the array
         return toInt64(b.slice(pos, pos+8));
     }
     
@@ -412,6 +428,7 @@ class ByteConvert
     **/
     public static function readUInt16(b:Array<Int>, pos:Int):UInt
     {
+    	// simply cuts the number from the array
         return toUInt16(b.slice(pos, pos+2));
     }
     
@@ -423,6 +440,7 @@ class ByteConvert
     **/
     public static function readUInt32(b:Array<Int>, pos:Int):UInt
     {
+    	// simply cuts the number from the array
         return toUInt32(b.slice(pos, pos+4));
     }
     
@@ -436,6 +454,7 @@ class ByteConvert
     **/
     public static function readUInt64(b:Array<Int>, pos:Int):UInt
     {
+    	// simply cuts the number from the array
         return toUInt64(b.slice(pos, pos+8));
     }
          
@@ -526,8 +545,8 @@ class ByteConvert
     
     /**
         Write a 64-bit unsigned integer in the given bytes array at the given position.
-         
-         **Doesn't work in 32-bit systems**
+        
+        **Doesn't work in 32-bit systems**
         
         @param b byte array.
         @param pos position to write at.
