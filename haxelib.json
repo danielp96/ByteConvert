@@ -4,12 +4,8 @@
     "license": "MIT",
     "tags": ["cross", "utility", "byte"],
     "description": "Target independent tools for several byte conversions.",
-    "version": "2.0.0",
-    "releasenote": "Added bit() function to read/write single bits from a number,
-                    Added bits() function to read/write several bits from a number,
-                    toBits() and fromBits() now work with 32- and 64-bit lengths,
-    				API Change: toBits() and fromBits() now use UInt and Array<Int> instead of Int and Array<Bool>,
-    				API Change: writeInt and writeUInt functions changed parameters from foo(b, num, pos) to foo(b, pos, num) to pattern used by other langs/APIs.",
+    "version": "2.0.2",
+    "releasenote": "Package and README fix.",
     "contributors": ["danielp96"],
     "dependecies": {}
 }

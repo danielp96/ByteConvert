@@ -4,6 +4,8 @@ package byteConvert;
     Target independent tools for several byte conversions.
     
     All values are manipulated as Int and UInt.
+    
+    64-bit functions don't work on 32-bit systems.
 **/
 
 class ByteConvert
@@ -11,8 +13,6 @@ class ByteConvert
     /**
         Returns an array of 0s and 1s representing an 32- or 64-bit UInt,
         with the first element being the least significant bit.
-        
-        @param num value to be converted.
     **/
     public static function toBits(num:UInt):Array<Int>
     {
@@ -33,8 +33,6 @@ class ByteConvert
     /**
         Returns an 32- or 64-bit UInt from the given array of 0s and 1s,
         with the first element being the least significant bit.
-        
-        @param num int array to be converted.
     **/
     public static function fromBits(num:Array<Int>):UInt
     {
@@ -51,11 +49,9 @@ class ByteConvert
     /**
         Returns num with pos bit set to val.
         
-        @param num UInt to read/edit.
-        @param pos right-to-left 0-31 or 0-63 bit position.
-        @param val value to set the bit to.
+        Pos starts at cero from the least significant bit.
         
-        If val is null returns the value of bit at pos.
+        If val isn't set, returns the value of bit at pos.
     **/
     public static function bit(num:UInt, pos:Int, ?val:Int):Int
     {
@@ -73,12 +69,9 @@ class ByteConvert
     /**
         Returns num with len bits of val set at pos.
         
-        @param num UInt to read/edit.
-        @param pos right-to-left 0-31 or 0-63 bit position.
-        @param len amount of bits to read/write.
-        @param val value to write at pos.
+        Pos starts at cero from the least significant bit.
         
-        If val is null returns len bits at pos.
+        If val isn't set, returns len bits at pos.
     **/
     public static function bits(num:UInt, pos:Int, len:Int, ?val:UInt):UInt
     {
@@ -101,7 +94,6 @@ class ByteConvert
     
     /**
         Changes the endianess of a 16-bit value.
-        @param int value to be flipped.
     **/
     public static function flipEndian16(int:UInt):UInt
     {
@@ -126,7 +118,6 @@ class ByteConvert
     
     /**
         Changes the endianess of a 32-bit value.
-        @param int value to be flipped.
     **/
     public static function flipEndian32(int:UInt):UInt
     {
@@ -150,11 +141,7 @@ class ByteConvert
     }
     
     /**
-        Changes the endianess of a 64-bit value.
-        
-        **Doesn't work in 32-bit systems**
-        
-        @param int value to be flipped.
+        Changes the endianess of a 64-bit value..
     **/
     public static function flipEndian64(int:UInt):UInt
     {
@@ -169,9 +156,7 @@ class ByteConvert
     }
     
     /**
-       Return a 16-bit signed integer from the given bytes array.
-       
-       @param b 2-byte array with the first element being the most significant byte.
+       Return a 16-bit signed integer from b bytes array.
     **/
     public static function toInt16(b:Array<Int>):Int
     {
@@ -186,9 +171,7 @@ class ByteConvert
     }
     
     /**
-       Return a 32-bit signed integer from the given bytes array.
-       
-       @param b 4-byte array with the first element being the most significant byte.
+       Return a 32-bit signed integer from b bytes array.
     **/
     public static function toInt32(b:Array<Int>):Int
     {
@@ -203,11 +186,7 @@ class ByteConvert
     }
     
     /**
-       Return a 64-bit signed integer from the given bytes array.
-       
-       **Doesn't work in 32-bit systems**
-       
-       @param b 8-byte array with the first element being the most significant byte.
+       Return a 64-bit signed integer from b bytes array.
     **/
     public static function toInt64(b:Array<Int>):Int
     {
@@ -222,9 +201,7 @@ class ByteConvert
     }
     
     /**
-       Return a 16-bit unsigned integer from the given bytes array.
-       
-       @param b 2-byte array with the first element being the most significant byte.
+       Return a 16-bit unsigned integer from b bytes array.
     **/
     public static function toUInt16(b:Array<Int>):UInt
     {
@@ -239,7 +216,7 @@ class ByteConvert
     }
     
     /**
-       Return a 32-bit unsigned integer from the given bytes array.
+       Return a 32-bit unsigned integer from b bytes array.
        
        @param b 4-byte array with the first element being the most significant byte.
     **/
@@ -256,11 +233,9 @@ class ByteConvert
     }
     
     /**
-       Return a 64-bit unsigned integer from the given bytes array.
+       Return a 64-bit unsigned integer from b bytes array.
        
        **Doesn't work in 32-bit systems.**
-       
-       @param b 8-byte array with the first element being the most significant byte.
     **/
     public static function toUInt64(b:Array<Int>):UInt
     {
@@ -275,10 +250,7 @@ class ByteConvert
     }
     
     /**
-        Returns the given 16-bit Int as an array of Bytes,
-        with the first element being the most significant byte.
-        
-        @param n value to be converted.
+        Returns the given 16-bit Int as array of Bytes.
     **/
     public static function fromInt16(n:Int):Array<Int>
     {
@@ -291,10 +263,7 @@ class ByteConvert
     }
     
     /**
-        Returns the given 32-bit Int as an array of Bytes,
-        with the first element being the most significant byte.
-        
-        @param n value to be converted.
+        Returns the given 32-bit Int as array of Bytes.
     **/
     public static function fromInt32(n:Int):Array<Int>
     {
@@ -309,12 +278,7 @@ class ByteConvert
     }
     
     /**
-        Returns the given 64-bit Int as an array of Bytes,
-        with the first element being the most significant byte.
-        
-        **Doesn't work in 32-bit systems**
-        
-        @param n value to be converted.
+        Returns the given 64-bit Int as array of Bytes.
     **/
     public static function fromInt64(n:UInt):Array<Int>
     {
@@ -329,10 +293,7 @@ class ByteConvert
     }
     
     /**
-        Returns the given 16-bit UInt as an array of Bytes,
-        with the first element being the most significant byte.
-        
-        @param n value to be converted.
+        Returns the given 16-bit UInt as an array of Bytes.
     **/
     public static function fromUInt16(n:UInt):Array<Int>
     {
@@ -345,10 +306,7 @@ class ByteConvert
     }
     
     /**
-        Returns the given 32-bit UInt as an array of Bytes,
-        with the first element being the most significant byte.
-        
-        @param n value to be converted.
+        Returns the given 32-bit UInt as array of Bytes.
     **/
     public static function fromUInt32(n:UInt):Array<Int>
     {
@@ -363,12 +321,7 @@ class ByteConvert
     }
     
     /**
-        Returns the given 64-bit UInt as an array of Bytes,
-        with the first element being the most significant byte.
-        
-        **Doesn't work in 32-bit systems**
-        
-        @param n value to be converted.
+        Returns the given 64-bit UInt as array of Bytes.
     **/
     public static function fromUInt64(n:UInt):Array<Int>
     {
@@ -383,87 +336,55 @@ class ByteConvert
     }
     
     /**
-       Return a 16-bit signed integer from the given bytes array at the given position.
-       
-       @param b byte array.
-       @param pos position to read from.
+       Return a 16-bit signed integer from b bytes array at pos index.
     **/
     public static function readInt16(b:Array<Int>, pos:Int):Int
     {
-    	// simply cuts the number from the array
         return toInt16(b.slice(pos, pos+2));
     }
     
     /**
-       Return a 32-bit signed integer from the given bytes array at the given position.
-       
-       @param b byte array.
-       @param pos position to read from.
+       Return a 32-bit signed integer from b bytes array at pos index.
     **/
     public static function readInt32(b:Array<Int>, pos:Int):Int
     {
-    	// simply cuts the number from the array
         return toInt32(b.slice(pos, pos+4));
     }
     
     /**
-       Return a 64-bit signed integer from the given bytes array at the given position.
-        
-        **Doesn't work in 32-bit systems**
-       
-       @param b byte array.
-       @param pos position to read from.
+       Return a 64-bit signed integer from b bytes array at pos index.
     **/
     public static function readInt64(b:Array<Int>, pos:Int):Int
     {
-    	// simply cuts the number from the array
         return toInt64(b.slice(pos, pos+8));
     }
     
     /**
-       Return a 16-bit unsigned integer from the given bytes array at the given position.
-       
-       @param b byte array.
-       @param pos position to read from.
+       Return a 16-bit unsigned integer from b bytes array at pos index.
     **/
     public static function readUInt16(b:Array<Int>, pos:Int):UInt
     {
-    	// simply cuts the number from the array
         return toUInt16(b.slice(pos, pos+2));
     }
     
     /**
-       Return a 32-bit unsigned integer from the given bytes array at the given position.
-       
-       @param b byte array.
-       @param pos position to read from.
+       Return a 32-bit unsigned integer from b bytes array at pos index.
     **/
     public static function readUInt32(b:Array<Int>, pos:Int):UInt
     {
-    	// simply cuts the number from the array
         return toUInt32(b.slice(pos, pos+4));
     }
     
     /**
-       Return a 64-bit unsigned integer from the given bytes array at the given position.
-        
-        **Doesn't work in 32-bit systems**
-       
-       @param b byte array.
-       @param pos position to read from.
+       Return a 64-bit unsigned integer from b bytes array at pos index.
     **/
     public static function readUInt64(b:Array<Int>, pos:Int):UInt
     {
-    	// simply cuts the number from the array
         return toUInt64(b.slice(pos, pos+8));
     }
          
     /**
-        Write a 16-bit signed integer in the given bytes array at the given position.
-        
-        @param b byte array.
-        @param pos position to write at.
-        @param num number to write.
+        Write a 16-bit signed integer in b bytes array at pos index.
     **/
     public static function writeInt16(b:Array<Int>, pos:Int, num:Int):Void
     {
@@ -476,11 +397,7 @@ class ByteConvert
     }
     
     /**
-        Write a 32-bit signed integer in the given bytes array at the given position.
-        
-        @param b byte array.
-        @param pos position to write at.
-        @param num number to write.
+        Write a 32-bit signed integer in b bytes array at pos index.
     **/
     public static function writeInt32(b:Array<Int>, pos:Int, num:Int):Void
     {
@@ -493,11 +410,7 @@ class ByteConvert
     }
     
     /**
-        Write a 64-bit signed integer in the given bytes array at the given position.
-        
-        @param b byte array.
-        @param pos position to write at.
-        @param num number to write.
+        Write a 64-bit signed integer in b bytes array at pos index.
     **/
     public static function writeInt64(b:Array<Int>, pos:Int, num:Int):Void
     {
@@ -510,11 +423,7 @@ class ByteConvert
     }
         
     /**
-        Write a 16-bit unsigned integer in the given bytes array at the given position.
-        
-        @param b byte array.
-        @param pos position to write at.
-        @param num number to write.
+        Write a 16-bit unsigned integer in b bytes array at pos index.
     **/
     public static function writeUInt16(b:Array<Int>, pos:Int, num:UInt):Void
     {
@@ -527,11 +436,7 @@ class ByteConvert
     }
     
     /**
-        Write a 32-bit unsigned integer in the given bytes array at the given position.
-        
-        @param b byte array.
-        @param pos position to write at.
-        @param num number to write.
+        Write a 32-bit unsigned integer in b bytes array at pos index.
     **/
     public static function writeUInt32(b:Array<Int>, pos:Int, num:UInt):Void
     {
@@ -544,13 +449,7 @@ class ByteConvert
     }
     
     /**
-        Write a 64-bit unsigned integer in the given bytes array at the given position.
-        
-        **Doesn't work in 32-bit systems**
-        
-        @param b byte array.
-        @param pos position to write at.
-        @param num number to write.
+        Write a 64-bit unsigned integer in b bytes array at pos index.
     **/
     public static function writeUInt64(b:Array<Int>, pos:Int, num:UInt):Void
     {
